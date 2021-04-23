@@ -8,6 +8,8 @@ let displayHours = 0;
 let interval = null;
 let status = "paused";
 
+let actions;
+
 function stopWatch() {
   seconds++;
 
@@ -83,13 +85,18 @@ function stop() {
 function save() {
   console.log("save function");
 
-  //로컬 스토리지에 저장하기
-
   // action 목록을 추가한다.
   const actionTime = `${displayHours}:${displayMinutes}:${displaySeconds}`;
   const actionTitle = document.querySelector("#save-data input").value;
   document.querySelector("#save-data input").value = "";
   addToActionList(actionTime, actionTitle);
+
+  //로컬 스토리지에 저장하기
+  const actionData = {
+    time: actionTime,
+    action: actionTitle,
+  };
+  saveLocal(actionData);
 
   document.getElementById("save-data").style.display = "none";
 }
@@ -109,6 +116,18 @@ function addToActionList(time, action) {
   li.appendChild(spanActionTitle);
 
   document.querySelector("#action-list ul").appendChild(li);
+}
+
+function saveLocal(value) {
+  // value는..
+  // {time: '05:11:10', action: 'test'} 처럼 들어온다.
+  if (localStorage.getItem("action")) {
+    actions = JSON.parse(localStorage.getItem("action"));
+  } else {
+    actions = [];
+  }
+  actions.push(value);
+  localStorage.setItem("action", JSON.stringify(actions));
 }
 
 document.getElementById("start-pause").addEventListener("click", startPause);
