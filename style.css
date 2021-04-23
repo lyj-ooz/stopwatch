@@ -1,4 +1,13 @@
-.container {
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+
+#container {
   height: 700px;
   width: 100%;
 }
@@ -8,7 +17,7 @@
   text-align: center;
 }
 
-.buttons {
+#buttons {
   text-align: center;
   margin-bottom: 20px;
 }
@@ -16,4 +25,8 @@
 #save-data {
   text-align: center;
   display: none;
+}
+
+#action-list {
+  text-align: center;
 }

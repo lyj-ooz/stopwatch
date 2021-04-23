@@ -82,11 +82,33 @@ function stop() {
 
 function save() {
   console.log("save function");
-  if (document.querySelector("#save-data input").value === "") {
-  }
+
   //로컬 스토리지에 저장하기
 
+  // action 목록을 추가한다.
+  const actionTime = `${displayHours}:${displayMinutes}:${displaySeconds}`;
+  const actionTitle = document.querySelector("#save-data input").value;
+  document.querySelector("#save-data input").value = "";
+  addToActionList(actionTime, actionTitle);
+
   document.getElementById("save-data").style.display = "none";
+}
+
+function addToActionList(time, action) {
+  const li = document.createElement("li");
+
+  const spanActionTime = document.createElement("span");
+  spanActionTime.setAttribute("id", "action-time");
+  spanActionTime.innerText = time;
+
+  const spanActionTitle = document.createElement("span");
+  spanActionTitle.setAttribute("id", "action-time");
+  spanActionTitle.innerText = action;
+
+  li.appendChild(spanActionTime);
+  li.appendChild(spanActionTitle);
+
+  document.querySelector("#action-list ul").appendChild(li);
 }
 
 document.getElementById("start-pause").addEventListener("click", startPause);
