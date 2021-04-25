@@ -103,13 +103,14 @@ function save() {
 
 function addToActionList(time, action) {
   const li = document.createElement("li");
+  li.setAttribute("id", "last-list");
 
   const spanActionTime = document.createElement("span");
   spanActionTime.setAttribute("id", "action-time");
   spanActionTime.innerText = time;
 
   const spanActionTitle = document.createElement("span");
-  spanActionTitle.setAttribute("id", "action-time");
+  spanActionTitle.setAttribute("id", "action-title");
   spanActionTitle.innerText = action;
 
   li.appendChild(spanActionTime);
