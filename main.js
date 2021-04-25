@@ -103,7 +103,7 @@ function save() {
 
 function addToActionList(time, action) {
   const li = document.createElement("li");
-  li.setAttribute("id", "last-list");
+  // li.setAttribute("id", "last-list");
 
   const spanActionTime = document.createElement("span");
   spanActionTime.setAttribute("id", "action-time");
@@ -117,7 +117,15 @@ function addToActionList(time, action) {
   li.appendChild(spanActionTitle);
 
   document.querySelector("#action-list ul").appendChild(li);
+
+  // setIDtoLastChild();
 }
+
+// function setIDtoLastChild() {
+//   document
+//     .querySelector("#action-list ul")
+//     .lastElementChild.setAttribute("id", "last-list");
+// }
 
 function saveLocal(value) {
   // value는..
