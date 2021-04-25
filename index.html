@@ -5,22 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>stopwatch</title>
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <script src="main.js" async></script>
   </head>
   <body>
     <div id="container">
       <div id="display">00:00:00</div>
+
       <div id="buttons">
         <button id="start-pause">Start</button>
         <button id="stop">Stop</button>
         <button id="reset">Reset</button>
       </div>
+
       <div id="save-data">
-        <span id="timedata"></span>
+        <div>⏱ <span id="timedata"></span></div>
         <input type="text" placeholder="what did you do?" />
-        <button id="save">Save</button>
+        <div>
+          <button id="save">Save</button>
+        </div>
       </div>
+
       <div id="action-list">
         <ul></ul>
       </div>

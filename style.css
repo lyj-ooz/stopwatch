@@ -1,32 +1,125 @@
-ul,
-li {
+:root {
+  --text-color: rgb(41, 41, 41);
+  --font-size: 15px;
+  --button-border-color: rgb(34, 34, 34);
+  --button-hover-bg-color: rgb(82, 188, 230);
+  --button-hover-text-color: rgb(245, 245, 245);
+  --input-border-color: #c5c5c5;
+  --input-focus-border-color: rgba(81, 203, 238, 0.8);
+  --input-hover-border-color: #616161;
+}
+/* input hover하면 보더 컬러 진해지는거 괜찮은듯 */
+
+body {
   margin: 0;
   padding: 0;
+  font-family: "Poppins", sans-serif;
+  color: var(--text-color);
+  box-sizing: border-box;
 }
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
 li {
   list-style: none;
 }
 
+button {
+  padding: 10px 20px;
+  font-family: "Poppins", sans-serif;
+  font-size: var(--font-size);
+  color: var(--text-color);
+  border: 1px solid var(--button-border-color);
+  border-radius: 3px;
+  background: 0;
+  cursor: pointer;
+}
+button:hover {
+  background-color: var(--button-hover-bg-color);
+  border-color: var(--button-hover-bg-color);
+  color: var(--button-hover-text-color);
+}
+
 #container {
-  height: 700px;
-  width: 100%;
+  width: 300px;
+  margin: 30px auto;
+  text-align: center;
 }
 
 #display {
-  font-size: 40px;
-  text-align: center;
+  font-size: 46px;
+  margin-bottom: 10px;
 }
 
 #buttons {
-  text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
+}
+
+#buttons button {
+  box-sizing: border-box;
+  width: 32.3%;
 }
 
 #save-data {
-  text-align: center;
   display: none;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  /* background-color: #777; */
+}
+
+#save-data input {
+  width: 100%;
+  padding: 10px;
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+  border-radius: 3px;
+  border: 1px solid var(--input-border-color);
+  outline: none;
+  color: var(--text-color);
+  font-size: var(--font-size);
+}
+
+#save-data input:hover {
+  border-color: var(--input-hover-border-color);
+}
+
+#save-data input:focus {
+  border-color: var(--input-focus-border-color);
+}
+
+#save-data button {
+  width: 100%;
+}
+
+#save-data div {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 #action-list {
-  text-align: center;
+  text-align: left;
+}
+
+#action-list ul li {
+  margin-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+#action-list ul li:last-child {
+  border-bottom: none;
+}
+
+/* #action-list ul li#last-list {
+  border-bottom: none;
+} */
+
+#action-list #action-time {
+  margin-right: var(--font-size);
+}
+
+#action-list #action-title {
 }
