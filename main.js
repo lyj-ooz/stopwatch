@@ -53,11 +53,21 @@ function startPause() {
     interval = window.setInterval(stopWatch, 1000);
     document.getElementById("start-pause").innerHTML = "Pause";
     status = "started";
+    document.getElementById("stop").disabled = false;
+    document.getElementById("reset").disabled = false;
+
+    if (document.getElementById("save-data").style.display === "block") {
+      document.getElementById("save-data").style.display = "none";
+    }
   } else {
-    window.clearInterval(interval);
-    document.getElementById("start-pause").innerHTML = "Resume";
-    status = "paused";
+    pause(interval);
   }
+}
+
+function pause(interval) {
+  window.clearInterval(interval);
+  document.getElementById("start-pause").innerHTML = "Resume";
+  status = "paused";
 }
 
 function reset() {
@@ -67,6 +77,14 @@ function reset() {
   hours = 0;
   document.getElementById("display").innerHTML = "00:00:00";
   document.getElementById("start-pause").innerHTML = "Start";
+
+  if (document.getElementById("save-data").style.display === "block") {
+    document.getElementById("save-data").style.display = "none";
+  }
+
+  document.getElementById("stop").disabled = true;
+  document.getElementById("reset").disabled = true;
+
   status = "paused";
 }
 
@@ -74,6 +92,8 @@ function stop() {
   const hourStopped = displayHours;
   const minuteStopped = displayMinutes;
   const secondStopped = displaySeconds;
+
+  pause(interval);
 
   document.querySelector(
     "#save-data #timedata"
@@ -83,11 +103,14 @@ function stop() {
 }
 
 function save() {
-  console.log("save function");
-
   // action 목록을 추가한다.
   const actionTime = `${displayHours}:${displayMinutes}:${displaySeconds}`;
-  const actionTitle = document.querySelector("#save-data input").value;
+  let actionTitle = document.querySelector("#save-data input").value.trim();
+
+  if (actionTitle.length === 0) {
+    actionTitle = selectRandomActionTitle();
+  }
+
   document.querySelector("#save-data input").value = "";
   addToActionList(actionTime, actionTitle);
 
@@ -98,7 +121,7 @@ function save() {
   };
   saveLocal(actionData);
 
-  document.getElementById("save-data").style.display = "none";
+  reset();
 }
 
 function addToActionList(time, action) {
@@ -137,6 +160,27 @@ function saveLocal(value) {
   }
   actions.push(value);
   localStorage.setItem("action", JSON.stringify(actions));
+}
+
+function selectRandomActionTitle() {
+  const randomAction = [
+    "뿡",
+    "😈",
+    "🤪",
+    "😭",
+    "💩",
+    "🐣",
+    "🦄",
+    "pooping",
+    "drooling",
+    "입력좀해주지..",
+    "너무하네",
+    "띠용",
+    "😇",
+  ];
+  const randomNum = Math.floor(Math.random() * randomAction.length);
+
+  return randomAction[randomNum];
 }
 
 document.getElementById("start-pause").addEventListener("click", startPause);
