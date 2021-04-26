@@ -7,8 +7,8 @@
   --input-border-color: #c5c5c5;
   --input-focus-border-color: rgba(81, 203, 238, 0.8);
   --input-hover-border-color: #616161;
+  --disabled-color: rgb(189, 189, 189);
 }
-/* input hover하면 보더 컬러 진해지는거 괜찮은듯 */
 
 body {
   margin: 0;
@@ -41,6 +41,17 @@ button:hover {
   background-color: var(--button-hover-bg-color);
   border-color: var(--button-hover-bg-color);
   color: var(--button-hover-text-color);
+}
+
+button:disabled {
+  color: var(--disabled-color);
+  cursor: not-allowed;
+  /* cursor: auto; */
+  border-color: var(--disabled-color);
+}
+button:disabled:hover {
+  background-color: #fff;
+  border-color: var(--disabled-color);
 }
 
 #container {
