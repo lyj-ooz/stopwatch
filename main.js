@@ -126,18 +126,22 @@ function save() {
 
 function addToActionList(time, action) {
   const li = document.createElement("li");
-  // li.setAttribute("id", "last-list");
 
-  const spanActionTime = document.createElement("span");
-  spanActionTime.setAttribute("id", "action-time");
-  spanActionTime.innerText = time;
+  const divActionTime = document.createElement("div");
+  divActionTime.setAttribute("class", "action-time");
+  divActionTime.innerText = time;
 
-  const spanActionTitle = document.createElement("span");
-  spanActionTitle.setAttribute("id", "action-title");
-  spanActionTitle.innerText = action;
+  const divActionTitle = document.createElement("div");
+  divActionTitle.setAttribute("class", "action-title");
+  divActionTitle.innerText = action;
 
-  li.appendChild(spanActionTime);
-  li.appendChild(spanActionTitle);
+  const divActionDel = document.createElement("div");
+  divActionDel.setAttribute("class", "action-del");
+  divActionDel.innerHTML = "<button>X</button>";
+
+  li.appendChild(divActionTime);
+  li.appendChild(divActionTitle);
+  li.appendChild(divActionDel);
 
   document.querySelector("#action-list ul").appendChild(li);
 
