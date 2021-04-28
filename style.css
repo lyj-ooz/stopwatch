@@ -114,23 +114,35 @@ button:disabled:hover {
   text-align: left;
 }
 
-#action-list ul li {
+#action-list li {
   margin-top: 5px;
   padding-bottom: 5px;
   border-bottom: 1px solid #e3e3e3;
+  display: flex;
+  justify-content: space-between;
 }
 
-#action-list ul li:last-child {
+#action-list li .action-time {
+  flex-basis: 27%;
+}
+
+#action-list li .action-title {
+  flex-basis: 64%;
+  overflow: scroll;
+  word-wrap: break-word;
+}
+
+#action-list li .action-del {
+  flex-basis: 9%;
+  text-align: right;
+}
+
+#action-list li .action-del button {
+  margin-top: 2px;
+  padding: 0 6px;
+  border: 0;
+}
+
+#action-list li:last-child {
   border-bottom: none;
-}
-
-/* #action-list ul li#last-list {
-  border-bottom: none;
-} */
-
-#action-list #action-time {
-  margin-right: var(--font-size);
-}
-
-#action-list #action-title {
 }
