@@ -191,3 +191,18 @@ document.getElementById("start-pause").addEventListener("click", startPause);
 document.getElementById("reset").addEventListener("click", reset);
 document.getElementById("stop").addEventListener("click", stop);
 document.getElementById("save").addEventListener("click", save);
+// event delegation 활용
+document.getElementById("action-list").addEventListener("click", (e) => {
+  if (e.target.nodeName === "BUTTON") {
+    e.target.parentElement.parentElement.remove();
+  }
+});
+
+// 맨 처음 접속하면 로컬 스토리지에 저장된 데이터를 가져와서 리스트에 보여줌
+if (localStorage.getItem("action")) {
+  const dataFromLocal = JSON.parse(localStorage.getItem("action"));
+
+  dataFromLocal.forEach((data) => {
+    addToActionList(data.time, data.action);
+  });
+}
