@@ -112,20 +112,25 @@ function save() {
   }
 
   document.querySelector("#save-data input").value = "";
-  addToActionList(actionTime, actionTitle);
+
+  const actionID = Date.now().toString();
+
+  addToActionList(actionTime, actionTitle, actionID);
 
   //로컬 스토리지에 저장하기
   const actionData = {
     time: actionTime,
     action: actionTitle,
+    id: actionID,
   };
   saveLocal(actionData);
 
   reset();
 }
 
-function addToActionList(time, action) {
+function addToActionList(time, action, id) {
   const li = document.createElement("li");
+  li.setAttribute("data-id", id);
 
   const divActionTime = document.createElement("div");
   divActionTime.setAttribute("class", "action-time");
@@ -157,6 +162,7 @@ function addToActionList(time, action) {
 function saveLocal(value) {
   // value는..
   // {time: '05:11:10', action: 'test'} 처럼 들어온다.
+  console.log(value);
   if (localStorage.getItem("action")) {
     actions = JSON.parse(localStorage.getItem("action"));
   } else {
@@ -187,14 +193,26 @@ function selectRandomActionTitle() {
   return randomAction[randomNum];
 }
 
+function removeTaskFromLocal(id) {
+  const dataFromLocal = JSON.parse(localStorage.getItem("action"));
+  const idx = dataFromLocal.findIndex((d) => {
+    return d.id === id;
+  });
+
+  dataFromLocal.splice(idx, 1);
+  localStorage.setItem("action", JSON.stringify(dataFromLocal));
+}
+
 document.getElementById("start-pause").addEventListener("click", startPause);
 document.getElementById("reset").addEventListener("click", reset);
 document.getElementById("stop").addEventListener("click", stop);
 document.getElementById("save").addEventListener("click", save);
-// event delegation 활용
+// action 삭제 (event delegation 활용)
 document.getElementById("action-list").addEventListener("click", (e) => {
   if (e.target.nodeName === "BUTTON") {
-    e.target.parentElement.parentElement.remove();
+    const liToRemove = e.target.parentElement.parentElement;
+    liToRemove.remove();
+    removeTaskFromLocal(liToRemove.dataset.id);
   }
 });
 
@@ -203,6 +221,6 @@ if (localStorage.getItem("action")) {
   const dataFromLocal = JSON.parse(localStorage.getItem("action"));
 
   dataFromLocal.forEach((data) => {
-    addToActionList(data.time, data.action);
+    addToActionList(data.time, data.action, data.id);
   });
 }
